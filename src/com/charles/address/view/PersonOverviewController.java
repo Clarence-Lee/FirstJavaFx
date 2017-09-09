@@ -44,7 +44,6 @@ public class PersonOverviewController {
      */
 
     public PersonOverviewController() {
-
     }
 
     /*
@@ -53,7 +52,7 @@ public class PersonOverviewController {
      */
     @FXML
     private void initialize() {
-        //Lambdas 特性 -> ;
+        //TODO Lambdas 特性 -> ;
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
     }
@@ -68,6 +67,31 @@ public class PersonOverviewController {
 
         // Add observable list data to the table
         personTable.setItems(mainApp.getPersonData());
+    }
+
+    /*
+    Fills all text fields to show details about the person.
+    If the specified person is null, all text fields are cleared.
+    @parm person or null
+     */
+    private void showPersonDetails(Person person) {
+        if (person != null) {
+            //Fill the labels with info from the person object.
+            firstNameLabel.setText(person.getFirstName());
+            lastNameLabel.setText(person.getLastName());
+            streetLabel.setText(person.getStreet());
+            postalCodeLabel.setText(person.getPostalCode());
+            cityLabel.setText(person.getCity());
+
+            //TODO: we need a way to convert the birthday to the string
+        }else {
+            firstNameLabel.setText("");
+            lastNameLabel.setText("");
+            streetLabel.setText("");
+            postalCodeLabel.setText("");
+            cityLabel.setText("");
+            birthdayLabel.setText("");
+        }
     }
 
 
