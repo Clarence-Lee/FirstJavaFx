@@ -36,6 +36,13 @@ public class PersonOverviewController {
     @FXML
     private Label birthdayLabel;
 
+    //Called when the user clicks on the delete button.
+    @FXML
+    private void handleDetetePerson() {
+        int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+        personTable.getItems().remove(selectedIndex);
+    }
+
     //Reference to the main application
     private MainApp mainApp;
 
