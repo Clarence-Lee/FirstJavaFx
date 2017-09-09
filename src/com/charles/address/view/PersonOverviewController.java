@@ -1,6 +1,7 @@
 package com.charles.address.view;
 
 import com.charles.address.MainApp;
+import com.charles.address.Util.DateUtil;
 import com.charles.address.model.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -55,6 +56,14 @@ public class PersonOverviewController {
         //TODO Lambdas 特性 -> ;
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+
+        //Clear person details.重设个人详情
+        showPersonDetails(null);
+
+        //Listen for selection changes and show the person details when changed
+        //在JavaFX中有一个接口称为ChangeListener，带有一个方法changed()。该方法有三个参数：observable, oldValue和newValue。
+        personTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showPersonDetails(newValue));
     }
 
     /**
@@ -80,10 +89,11 @@ public class PersonOverviewController {
             firstNameLabel.setText(person.getFirstName());
             lastNameLabel.setText(person.getLastName());
             streetLabel.setText(person.getStreet());
-            postalCodeLabel.setText(person.getPostalCode());
+            postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
             cityLabel.setText(person.getCity());
 
             //TODO: we need a way to convert the birthday to the string
+            birthdayLabel.setText(DateUtil.format(person.getBirthday()));
         }else {
             firstNameLabel.setText("");
             lastNameLabel.setText("");
