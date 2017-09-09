@@ -57,7 +57,11 @@ public class MainApp extends Application{
             //rootLayout.setCenter(personOverview);
             rootLayout.setLeft(personOverview);
 
-            //Give the controllers access to the main app.
+            /* Give the controllers access to the main app.
+            连接 MainApp 和 PersonOverviewController
+            setMainApp(...) 必须被 MainApp 类调用. 这让我们可以访问MainApp对象并得到Persons的列表和其他东西.
+            用以下代码替换showPersonOverview() 方法. 它包含了新增的两行
+             */
             PersonOverviewController controller = loader.getController();
             controller.setMainApp(this);
 
