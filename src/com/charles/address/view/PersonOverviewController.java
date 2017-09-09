@@ -39,14 +39,14 @@ public class PersonOverviewController {
 
     /*Called when the user clicks on the delete button.
     @FXML
-    private void handleDetetePerson() {
+    private void handleDeletePerson() {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         personTable.getItems().remove(selectedIndex);
     }
     */
     //fixed delete button.
     @FXML
-    private void handleDetetePerson() {
+    private void handleDeletePerson() {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             personTable.getItems().remove(selectedIndex);
