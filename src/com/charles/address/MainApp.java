@@ -20,10 +20,9 @@ public class MainApp extends Application{
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("First Java Fx 8");
 
         initRootLayout();
-
         showPersonOverview();
     }
 
@@ -51,7 +50,8 @@ public class MainApp extends Application{
             AnchorPane personOverview = (AnchorPane) loader.load();
 
             //set person overview into the center of the root layout
-            rootLayout.setCenter(personOverview);
+            //rootLayout.setCenter(personOverview);
+            rootLayout.setLeft(personOverview);
         } catch (IOException e) {
             e.printStackTrace();
         }
