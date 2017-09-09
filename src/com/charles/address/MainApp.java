@@ -1,6 +1,7 @@
 package com.charles.address;
 
 import com.charles.address.model.Person;
+import com.charles.address.view.PersonOverviewController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,6 +56,11 @@ public class MainApp extends Application{
             //set person overview into the center of the root layout
             //rootLayout.setCenter(personOverview);
             rootLayout.setLeft(personOverview);
+
+            //Give the controllers access to the main app.
+            PersonOverviewController controller = loader.getController();
+            controller.setMainApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
