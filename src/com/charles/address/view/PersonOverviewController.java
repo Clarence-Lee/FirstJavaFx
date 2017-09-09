@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.controlsfx.dialog.Dialogs;
 
 /**
  * Created by Administrator on 2017/9/9.
@@ -36,11 +37,26 @@ public class PersonOverviewController {
     @FXML
     private Label birthdayLabel;
 
-    //Called when the user clicks on the delete button.
+    /*Called when the user clicks on the delete button.
     @FXML
     private void handleDetetePerson() {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         personTable.getItems().remove(selectedIndex);
+    }
+    */
+    //fixed delete button.
+    @FXML
+    private void handleDetetePerson() {
+        int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            personTable.getItems().remove(selectedIndex);
+        }else {
+            //when personTable is empty.
+            Dialogs.create().title("No Selection")
+                    .masthead("No Person Selected")
+                    .message("Please select a person in the table.")
+                    .showWarning();
+        }
     }
 
     //Reference to the main application
