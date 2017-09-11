@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charles.address.view.PersonEditDialog">
    <children>
       <GridPane layoutX="119.0" layoutY="105.0" prefHeight="227.0" prefWidth="400.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -66,10 +65,10 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <HBox layoutX="254.0" layoutY="261.0" spacing="10.0" AnchorPane.rightAnchor="25.0">
+      <HBox layoutX="254.0" layoutY="261.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Button layoutX="200.0" layoutY="261.0" mnemonicParsing="false" text="Button" />
-            <Button layoutX="308.0" layoutY="261.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="200.0" layoutY="261.0" mnemonicParsing="false" text="Ok" />
+            <Button layoutX="308.0" layoutY="261.0" mnemonicParsing="false" text="Cancel" />
          </children>
          <opaqueInsets>
             <Insets />
