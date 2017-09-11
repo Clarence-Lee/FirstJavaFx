@@ -4,10 +4,9 @@ import com.charles.address.MainApp;
 import com.charles.address.Util.DateUtil;
 import com.charles.address.model.Person;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import org.controlsfx.dialog.Dialogs;
+
 
 /**
  * Created by Administrator on 2017/9/9.
@@ -52,10 +51,20 @@ public class PersonOverviewController {
             personTable.getItems().remove(selectedIndex);
         }else {
             //when personTable is empty.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+
+            alert.showAndWait();
+            /*
+            ControlsFx 在controlsfx-8.20后depercted。
+            and, I use the javaFx alert to replace
             Dialogs.create().title("No Selection")
                     .masthead("No Person Selected")
                     .message("Please select a person in the table.")
                     .showWarning();
+             */
         }
     }
 
