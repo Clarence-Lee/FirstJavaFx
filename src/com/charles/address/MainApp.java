@@ -1,6 +1,7 @@
 package com.charles.address;
 
 import com.charles.address.model.Person;
+import com.charles.address.view.PersonEditDialogController;
 import com.charles.address.view.PersonOverviewController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -9,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -67,6 +70,41 @@ public class MainApp extends Application{
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /*
+    Open a dialog to edit person detail for the specified person. if click ok, the change are saved into the perovded
+    person object and true is return.
+     */
+    public boolean showPersonEditDialog(Person person) {
+        try {
+            //Loading the fxml and create a new stage for the dialog
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/PersonEditDialog.fxml"));
+            AnchorPane pane = (AnchorPane) loader.load();
+
+            //create dialog stage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Person");
+            //TODO 解释initModality
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            //dialogStage.initStyle(StageStyle.DECORATED);
+            Scene scene = new Scene(pane);
+            dialogStage.setScene(scene);
+
+            //Set the person into the controller
+            PersonEditDialogController personController = loader.getController();
+            personController.setDialogStage(dialogStage);
+            personController.setPerson(person);
+
+            dialogStage.showAndWait();
+            return personController.isOkClicked();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
     
