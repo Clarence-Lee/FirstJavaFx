@@ -1,6 +1,7 @@
 package com.charles.address;
 
 import com.charles.address.model.Person;
+import com.charles.address.model.PersonListWrapper;
 import com.charles.address.view.PersonEditDialogController;
 import com.charles.address.view.PersonOverviewController;
 import javafx.application.Application;
@@ -14,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.IOException;
 import java.util.prefs.Preferences;
@@ -175,6 +178,21 @@ public class MainApp extends Application{
 
             //Update the stage title.
             primaryStage.setTitle("AddressApp");
+        }
+    }
+
+    /*
+    Loads person data from the specified file. The current person data will be replaced.
+     */
+    public void loadPersonDataFromFile(File file) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(PersonListWrapper.class);
+            Unmarshaller um = context.createUnmarshaller();
+
+            //Reading the XML from the file and unmarshalling
+            PersonListWrapper wrapper = (PersonListWrapper) um.unmarshal(file);
+        } catch (Exception e) {
+
         }
     }
 }
