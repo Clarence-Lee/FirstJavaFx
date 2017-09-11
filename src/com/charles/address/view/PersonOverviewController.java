@@ -68,6 +68,39 @@ public class PersonOverviewController {
         }
     }
 
+    /*
+    Called the new person when clicks the new button. Open a new dialog to edit the details
+     */
+    @FXML
+    private void handleNewPerson() {
+        Person tempPerson = new Person();
+        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+        if (okClicked) {
+            mainApp.getPersonData().add(tempPerson);
+        }
+    }
+
+    /*
+    Called when the clicks the edit button.
+     */
+    @FXML
+    private void handleEditPerson() {
+        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+            if (okClicked) {
+                showPersonDetails(selectedPerson);
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person seleceted");
+            alert.setContentText("Please select a person to edit in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
     //Reference to the main application
     private MainApp mainApp;
 
