@@ -26,3 +26,8 @@ MainApp中的`getPersonFilePath()`, `setPersonFilePath()`。
 JAXB已经包含在JDK中。这意味着我们不需要包含任何其它的库。
 JAXB提供两个主要特征：编列(marshal)Java对象到XML的能力，反编列(unmarshal)XML到Java对象。
 为了让JAXB能够做转换，我们需要准备我们的模型。
+
+##准备JAXB的模型类  
+我们希望保持的数据位于MainApp类的personData变量中。JAXB要求使用@XmlRootElement注释作为最顶层的类。personData是ObservableList类，我们不能把任何注释放到ObservableList上。因此，我们需要创建另外一个类，它只用于保存Person列表，用于存储成XML文件。
+
+创建的新类名为PersonListWrapper，把它放入到ch.makery.address.model包中。
