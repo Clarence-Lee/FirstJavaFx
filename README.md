@@ -20,5 +20,9 @@ MainApp中的`getPersonFilePath()`, `setPersonFilePath()`。
 #持久性数据到XML
 ##为何使用XML
 持久性数据的一种最常用的方法是使用数据库。数据库通常包含一些类型的关系数据（例如：表），当我们需要保存的数据是对象时。这称object-relational impedance mismatch。匹配对象到关系型数据库表有很多工作要做。这里有一些框架帮助我们匹配（例如：Hibernate，最流行的一个）。但是它仍然需要相当多的设置工作。
+对于简单的数据模型，非常容易使用XML。我们使用称为JAXB（Java Architecture for XML Binding）的库。只需要几行代码，JAXB将允许我们生成XML输出。
 
-对于简单的数据模型，非常容易使用XML。我们使用称为JAXB（Java Architecture for XML Binding）的库。只需要几行代码，JAXB将允许我们生成XML输出，
+##使用JAXB
+JAXB已经包含在JDK中。这意味着我们不需要包含任何其它的库。
+JAXB提供两个主要特征：编列(marshal)Java对象到XML的能力，反编列(unmarshal)XML到Java对象。
+为了让JAXB能够做转换，我们需要准备我们的模型。
