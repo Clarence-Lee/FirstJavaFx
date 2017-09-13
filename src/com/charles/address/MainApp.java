@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.IOException;
@@ -191,8 +193,43 @@ public class MainApp extends Application{
 
             //Reading the XML from the file and unmarshalling
             PersonListWrapper wrapper = (PersonListWrapper) um.unmarshal(file);
-        } catch (Exception e) {
 
+            personData.clear();
+            personData.addAll(wrapper.getPersons());
+
+            //Save to the file path to the registry
+            setPersonFilePath(file);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not load data from file: \n" + file.getPath());
+            alert.showAndWait();
+
+        }
+    }
+
+    /*
+    Save the current person data to the specified file.
+     */
+    public void savePersonDataToFile(File file) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(PersonListWrapper.class);
+            Marshaller mar = context.createMarshaller();
+            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            //Wrapping our data
+            PersonListWrapper wrapper = new PersonListWrapper();
+            wrapper.setPersons(personData);
+
+            //Marshalling and saving to registry
+            mar.marshal(wrapper, file);
+
+            //Save the file path to the registry
+            setPersonFilePath(file);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not save data to the file: \n" + file.getPath());
         }
     }
 }
